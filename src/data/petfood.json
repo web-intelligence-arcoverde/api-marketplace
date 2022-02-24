@@ -1,0 +1,46 @@
+[
+{
+"nome": "PEDIGREE", 
+"logo": "https://i.imgur.com/zxPLkIi.png", 
+"categoria" : "$$$", 
+"destaque": 1, 
+"location": {
+
+    "lat": -23.561684,
+    "lng": -46.625378
+}, 
+"produtos":{
+
+"nome": "PEDIGREE FILHORES RAÇAS MÉDIAS E GRANDES 1KG",
+"capa":  "https://i.imgur.com/06bVol3.png",
+"preco": 17.8,
+"avaliacoes": 4.5
+
+},
+{
+"nome": "PEDIGREE EQUILIBRIO NATURAL ADULTO 7KG",
+"capa": "https://i.imgur.com/kIvS3C3.png",
+"preco": 16.79, 
+"avaliacoes": 4.5
+
+},
+{
+    "nome":"PEDIGREE ADULTO CARNE, FRANGO & CEREAIS", 
+    "capa":"https://i.imgur.com/dv6yfGh.png",
+    "preco": 16.79,
+    "avaliacoes": 4.5
+}, 
+{
+"nome":, 
+"capa":, 
+"preco":,
+"avaliacoes":
+
+}
+
+    
+}
+
+
+
+]
