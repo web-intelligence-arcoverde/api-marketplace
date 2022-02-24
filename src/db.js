@@ -1,11 +1,7 @@
+const { Db } = require('mongodb');
 const mongoose = require('mongoose');
 
-//
-mongoose.set('useNewUrlParser', true);
-mongoose.set('useFindAndyMofy', false);
-mongoose.set('useCreateIndex', true);
-mongoose.set('useUnifiedTopology', true);
-mongoose.set('debug', true);
+
 //
 try {
     let connect = mongoose.connect(
@@ -17,3 +13,5 @@ try {
   } catch (err) {
     console.log("este aqui foi o erro" + err);
   }
+
+  module.exports = Db

@@ -1,7 +1,8 @@
+const { Router } = require('express');
 const express = require('express');
 const router = express.Router();
 
-router.get('/', async(req, res) =>{
+router.get('/', async(req, res, next) =>{
 
 try {
     res.json({message: false, message: "Teste"});
