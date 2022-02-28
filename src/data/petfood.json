@@ -1,100 +1,84 @@
 [
-{
-"nome": "PEDIGREE", 
-"logo": "https://i.imgur.com/zxPLkIi.png", 
-"categoria" : "$$$", 
-"destaque": 1, 
-"location": {
-
-    "lat": -23.561684,
-    "lng": -46.625378
-}, 
-"produtos":{
-
-"nome": "PEDIGREE FILHORES RAÇAS MÉDIAS E GRANDES 1KG",
-"capa":  "https://i.imgur.com/06bVol3.png",
-"preco": 17.8,
-"avaliacoes": 4.5
-
-},
-{
-"nome": "PEDIGREE EQUILIBRIO NATURAL ADULTO 7KG",
-"capa": "https://i.imgur.com/kIvS3C3.png",
-"preco": 16.79, 
-"avaliacoes": 4.5
-
-},
-{
-    "nome":"PEDIGREE ADULTO CARNE, FRANGO & CEREAIS", 
-    "capa":"https://i.imgur.com/dv6yfGh.png",
-    "preco": 16.79,
-    "avaliacoes": 4.5
-}, 
-{
-"nome":"Pedigree Sachê Adulto Raças Pequenas Sabor Frango ao molho",
-"capa":"https://i.imgur.com/pSS8gXD.png",
-"preco": 16.79, 
-"avaliacoes": 4.5
-
-},
-{
-"nome":"Pedigree Filhotes e raçãs pequenas",
-"capa":"https://i.imgur.com/NUHWa7o.png",
-"preco":16.79,
-"avaliacoes":4.7
-
-},
-{
-"nome":"Manelo",
-"logo":"https://i.imgur.com/EuMMQj6.png",
-"categoria": "$$$",
-"destaque":2,
-"location":{
-    "lat":-23.54209533,
-    "lng":-46.56780685
-
-},
-"produtos":[{
-    "nome": "Monello Select Gatos Filhotes Gatos 2kg",
-"capa":"https://i.imgur.com/N0H11dl.png",
-"preco":49.9,
-"avaliacoes":4.0
-
-}, 
-{
-
-    "nome":"Monello Select Gatas Filhotes Gatos 2kg",
-    "capa":"https://i.imgur.com/98ka9Ag.png",
-    "preco":42.3,
-    "avaliacoes":5.7
-},
-{
-
-"nome":"Monello Select Gatos castrados 1kg",
-"capa":"https://i.imgur.com/98ka9Ag.png",
-"avaliacoes":5.7,
-"preco":70.0
-
-
+  {
+    "nome": "PEDIGREE",
+    "logo": "https://i.imgur.com/zxPLkIi.png",
+    "categoria": "$$$",
+    "destaque": 1,
+    "location": {
+      "lat": -23.561684,
+      "lng": -46.625378
+    },
+    "produtos": {
+      "nome": "PEDIGREE FILHORES RAÇAS MÉDIAS E GRANDES 1KG",
+      "capa": "https://i.imgur.com/06bVol3.png",
+      "preco": 17.8,
+      "avaliacoes": 4.5
+    },
+    {
+      "nome": "PEDIGREE EQUILIBRIO NATURAL ADULTO 7KG",
+      "capa": "https://i.imgur.com/kIvS3C3.png",
+      "preco": 16.79,
+      "avaliacoes": 4.5
+    },
+    {
+      "nome": "PEDIGREE ADULTO CARNE, FRANGO & CEREAIS",
+      "capa": "https://i.imgur.com/dv6yfGh.png",
+      "preco": 16.79,
+      "avaliacoes": 4.5
+    },
+    {
+      "nome": "Pedigree Sachê Adulto Raças Pequenas Sabor Frango ao molho",
+      "capa": "https://i.imgur.com/pSS8gXD.png",
+      "preco": 16.79,
+      "avaliacoes": 4.5
+    },
+    {
+      "nome": "Pedigree Filhotes e raçãs pequenas",
+      "capa": "https://i.imgur.com/NUHWa7o.png",
+      "preco": 16.79,
+      "avaliacoes": 4.7
+    },
+    {
+      "nome": "Manelo",
+      "logo": "https://i.imgur.com/EuMMQj6.png",
+      "categoria": "$$$",
+      "destaque": 2,
+      "location": {
+        "lat": -23.54209533,
+        "lng": -46.56780685
+      },
+      "produtos": [
+        {
+          "nome": "Monello Select Gatos Filhotes Gatos 2kg",
+          "capa": "https://i.imgur.com/N0H11dl.png",
+          "preco": 49.9,
+          "avaliacoes": 4.0
+        },
+        {
+          "nome": "Monello Select Gatas Filhotes Gatos 2kg",
+          "capa": "https://i.imgur.com/98ka9Ag.png",
+          "preco": 42.3,
+          "avaliacoes": 5.7
+        },
+        {
+          "nome": "Monello Select Gatos castrados 1kg",
+          "capa": "https://i.imgur.com/98ka9Ag.png",
+          "avaliacoes": 5.7,
+          "preco": 70.0
+        }
+      ]
+    },
+    {
+      "nome": "Sachê de Ração úmida para Gatos e Filhotes Whiskas Sabor Carne",
+      "capa": "https://i.imgur.com/v0pKX0s.png",
+      "preco": 2.29,
+      "avaliacoes": 4.5
+    },
+    {
+      "nome": "RAÇÃO SECA PARA GATOS E FILHOTES WHISKAS",
+      "capa": "https://i.imgur.com/2DXLV0U.png",
+      "preco": 13.99,
+      "avaliacoes": 4.7
+    }
+  ]
 }
-]
-
-},
-{
-"nome":"Sachê de Ração úmida para Gatos e Filhotes Whiskas Sabor Carne", 
-"capa":"https://i.imgur.com/v0pKX0s.png",
-"preco": 2.29, 
-"avaliacoes": 4.5 
-
-},
-{
-"nome":"RAÇÃO SECA PARA GATOS E FILHOTES WHISKAS", 
-"capa":"https://i.imgur.com/2DXLV0U.png", 
-"preco":13.99,
-"avaliacoes": 4.7
-
-}
-
-]
-}
-]
