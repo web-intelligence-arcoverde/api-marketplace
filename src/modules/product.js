@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const produto = new Schema({
+const product = new Schema({
   petshop_id: {
     type: Schema.Types.ObjectId,
     ref: "Petshop"
@@ -15,4 +15,4 @@ const produto = new Schema({
   avaliacoes: Number
 });
 
-module.exports = mongoose.model("produto", petshop);
+module.exports = mongoose.model("Product", petshop);
