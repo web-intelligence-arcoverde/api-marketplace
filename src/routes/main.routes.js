@@ -1,9 +1,10 @@
 const { Router } = require('express');
 const express = require('express');
+const petshop = require('../modules/petshop');
 const router = express.Router();
 
 const Petshop = require('../modules/petshop')
-const product = require('../models/product')
+const product = require('../modules/product')
 
 //const createSplitTransaction = require(injetar o pagar-me)
 router.get('/petshops/:id', async(req, res, next) =>{
