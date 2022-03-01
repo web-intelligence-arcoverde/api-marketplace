@@ -10,7 +10,7 @@ try {
     for (let petshop of petshops){
         const newPetshop = await new Petshop(petshop).save();
            await Product.insertMany(
-        petshop.produtos.map((p) => ({ ... P, petshop_id: newPetshop.petshop._id}))
+        petshop.produtos.map((p) => ({ ...p , petshop_id: newPetshop.petshop._id}))
     ); 
      }
      console.log('Final Script final de teste');
