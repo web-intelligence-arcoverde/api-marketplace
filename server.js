@@ -5,7 +5,7 @@ const morgan = require("morgan");
 const PORT = process.env.PORT || 3000;
 app.use(cors());
 //db
-require('./src/db')
+require('./database')
 //
 app.use(morgan('dev'));
 app.use(express.json());
