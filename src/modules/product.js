@@ -28,7 +28,7 @@ const product = new Schema({
   },
   petshop_id: {
     type: Schema.Types.ObjectId,
-    ref: 'Petshop',
+    ref: "Petshop"
 
   },
   preco: {
@@ -42,14 +42,9 @@ const product = new Schema({
 
     type: Number
   },
-  CreatedAt: {
-    type: Date,
-    default: Date.now,
-  },
   avaliacoes: {
 
     type: Number
   }
 });
 module.exports = mongoose.model("Product", product);
-//const User = mongoose.model('product', petshop);
