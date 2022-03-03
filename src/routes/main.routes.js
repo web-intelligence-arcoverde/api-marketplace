@@ -11,7 +11,7 @@ router.get('/petshops', async(req, res, next) =>{
 
 try {
     const petshops = await Petshop.find();
-    res.json({error: false, petshops});
+    res.json(petshops);
 
 } catch (error) {
     res.json({ error:true , message: error.message});
@@ -22,10 +22,12 @@ router.get('/petshops/:id', async(req, res, next) =>{
 
     try {
         const petshop = await Petshop.findById(req.params.id);
-        let products = await product.find({
-            petshop_id: petshop._id 
-        })
-        res.json({error: false, petshop:{...Petshop._doc, products}});
+        console.log(req.params.id);
+        let products = await product.find()
+        //console.log(products)
+      const resultFilter =  products.filter(( p ) => {
+        console.log(p.petshop_id.toString() , petshop._id.toString())
+      }) 
     
     } catch (error) {
         res.json({ error:true , message: error.message});
