@@ -3,7 +3,7 @@ const router = express.Router();
 
 const Petshop = require("../modules/petshop");
 const Product = require("../modules/product");
-
+const authController = require("../controllers/auth.controller");
 router.get("/petshops", async (req, res, next) => {
   try {
     const petshops = await Petshop.find();
@@ -32,5 +32,7 @@ router.post("/purchase", async (req, res) => {
     res.json({ error: true, message: error.message });
   }
 });
+
+//routes.post("/login", authController.signin);
 
 module.exports = router;

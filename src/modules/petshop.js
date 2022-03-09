@@ -14,7 +14,7 @@ const petshop = new Schema({
   destaque: {
     type: Number,
   },
-  Location: {
+  location: {
     type: Object,
   },
   recipient_id: {

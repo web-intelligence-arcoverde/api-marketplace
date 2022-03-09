@@ -46,7 +46,7 @@ function initial() {
         if (err) {
           console.log("error", err);
         }
-        console.log("admin adicionado á coleção de funções");
+        console.log("admin adicionado á coleção de funçoes");
       });
     }
   });
