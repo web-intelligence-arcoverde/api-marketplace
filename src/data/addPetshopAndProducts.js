@@ -1,6 +1,9 @@
 const Petshop = require("../modules/petshop");
 const Product = require("../modules/product");
 const petshops = require("./petfood.json");
+//
+const Role = require("../modules/Role");
+const auth = require("../modules/auth");
 require("../../database");
 
 const addPetshopsAndProducts = async () => {
@@ -18,4 +21,35 @@ const addPetshopsAndProducts = async () => {
   }
 };
 
+function initial() {
+  Role.estimatedDocumentCount((err, count) => {
+    if (!err && count === 0) {
+      new Role({
+        name: "user",
+      }).save((err) => {
+        if (err) {
+          console.log("error", err);
+        }
+        console.log("usuário adicionado à coleção de funções");
+      });
+      new Role({
+        name: "moderator",
+      }).save((err) => {
+        if (err) {
+          console.log("error", err);
+        }
+        console.log("moderador adicionado á coleção de funções");
+      });
+      new Role({
+        name: "admin",
+      }).save((err) => {
+        if (err) {
+          console.log("error", err);
+        }
+        console.log("admin adicionado á coleção de funções");
+      });
+    }
+  });
+}
 addPetshopsAndProducts();
+initial();
