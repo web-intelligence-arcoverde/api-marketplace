@@ -3,7 +3,11 @@ const app = express();
 const cors = require("cors");
 const morgan = require("morgan");
 const PORT = process.env.PORT || 8000;
-app.use(cors());
+app.use(cors(corsOptions));
+app.use(express.urlencoded({ extended: true }));
+var corsOptions = {
+  origin: "http://localhost:8000",
+};
 require("./database");
 //
 app.use(morgan("dev"));
