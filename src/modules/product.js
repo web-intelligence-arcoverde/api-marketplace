@@ -1,5 +1,3 @@
-
-
 const { ObjectId } = require("bson");
 const mongoose = require("mongoose");
 const petshop = require("./petshop");
@@ -19,37 +17,26 @@ const petshop = require("./petshop");
 
 //module.exports = mongoose.model("produto", petshop);
 ////
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 const product = new Schema({
-
   nome: {
-
-    type: String
+    type: String,
   },
   petshop_id: {
     type: Schema.Types.ObjectId,
-    ref: 'Petshop',
-
+    ref: "Petshop",
   },
   preco: {
-    type: Number
+    type: Number,
   },
   capa: {
-
-    type: String
+    type: String,
   },
   preco: {
-
-    type: Number
-  },
-  CreatedAt: {
-    type: Date,
-    default: Date.now,
+    type: Number,
   },
   avaliacoes: {
-
-    type: Number
-  }
+    type: Number,
+  },
 });
 module.exports = mongoose.model("Product", product);
-//const User = mongoose.model('product', petshop);
