@@ -2,11 +2,11 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const morgan = require("morgan");
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8040;
 app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 var corsOptions = {
-  origin: "http://localhost:8000",
+  origin: "http://localhost:8040",
 };
 require("./database");
 //

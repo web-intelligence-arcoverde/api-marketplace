@@ -2,8 +2,8 @@ const Petshop = require("../modules/petshop");
 const Product = require("../modules/product");
 const petshops = require("./petfood.json");
 //
-const Role = require("../modules/Role");
-const auth = require("../modules/auth");
+const db = require("../modules/app");
+const Role = db.role;
 require("../../database");
 
 const addPetshopsAndProducts = async () => {

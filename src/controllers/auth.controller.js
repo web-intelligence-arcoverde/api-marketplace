@@ -1,9 +1,14 @@
 const config = require("../config/auth.config");
-//const db = require("../models"); fazer e descobrir pra onde vai
-////const User = db.user;
-//const Role = db.role;
+const db = require("../modules/app");
+const User = db.user;
+const Role = db.role;
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
+
+
+
+
+
 exports.signup = (req, res) => {
   const user = new User({
     username: req.body.username,
@@ -92,3 +97,9 @@ exports.signin = (req, res) => {
       });
     });
 };
+
+//– /api/test/all for public access
+//– /api/test/user for loggedin users (any role)
+//– /api/test/mod for moderator users
+//– /api/test/admin for admin users
+
