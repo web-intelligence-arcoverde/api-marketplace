@@ -5,15 +5,11 @@ const Role = db.role;
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
-
-
-
-
 exports.signup = (req, res) => {
   const user = new User({
     username: req.body.username,
     email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 8),
+    password: bcrypt.hashSync(req.body.password, 8)
   });
   user.save((err, user) => {
     if (err) {
@@ -23,20 +19,20 @@ exports.signup = (req, res) => {
     if (req.body.roles) {
       Role.find(
         {
-          name: { $in: req.body.roles },
+          name: { $in: req.body.roles }
         },
         (err, roles) => {
           if (err) {
             res.status(500).send({ message: err });
             return;
           }
-          user.roles = roles.map((role) => role._id);
-          user.save((err) => {
+          user.roles = roles.map(role => role._id);
+          user.save(err => {
             if (err) {
               res.status(500).send({ message: err });
               return;
             }
-            res.send({ message: "Usuario cadastrado com sucesso!" });
+            res.send({ message: "Usuario registrado com sucesso!" });
           });
         }
       );
@@ -47,12 +43,12 @@ exports.signup = (req, res) => {
           return;
         }
         user.roles = [role._id];
-        user.save((err) => {
+        user.save(err => {
           if (err) {
             res.status(500).send({ message: err });
             return;
           }
-          res.send({ message: "Usuario cadastrado com sucesso!" });
+          res.send({ message: "usuario registrado com sucesso" });
         });
       });
     }
@@ -60,7 +56,7 @@ exports.signup = (req, res) => {
 };
 exports.signin = (req, res) => {
   User.findOne({
-    username: req.body.username,
+    username: req.body.username
   })
     .populate("roles", "-__v")
     .exec((err, user) => {
@@ -69,7 +65,7 @@ exports.signin = (req, res) => {
         return;
       }
       if (!user) {
-        return res.status(404).send({ message: "Usuario não encontrado" });
+        return res.status(404).send({ message: "usuario não encontrado" });
       }
       var passwordIsValid = bcrypt.compareSync(
         req.body.password,
@@ -78,11 +74,11 @@ exports.signin = (req, res) => {
       if (!passwordIsValid) {
         return res.status(401).send({
           accessToken: null,
-          message: "Senha invalida!",
+          message: "Invalid Password!"
         });
       }
       var token = jwt.sign({ id: user.id }, config.secret, {
-        expiresIn: 86400, // 24 hours
+        expiresIn: 86400 // 24 hours
       });
       var authorities = [];
       for (let i = 0; i < user.roles.length; i++) {
@@ -93,7 +89,7 @@ exports.signin = (req, res) => {
         username: user.username,
         email: user.email,
         roles: authorities,
-        accessToken: token,
+        accessToken: token
       });
     });
 };
