@@ -1,5 +1,6 @@
 
 const mongoose = require("mongoose");
+const { user } = require("./app");
 
 
 const Schema = mongoose.Schema;
@@ -10,12 +11,13 @@ const User = new Schema({
   email: {
     type: String,
   },
+  
+  password: {
+    type: String,
+  },
   roles: {
     type: Schema.Types.ObjectId,
     ref: "Role",
-  },
-  password: {
-    type: String,
   },
 });
 module.exports = mongoose.model("User", User);
