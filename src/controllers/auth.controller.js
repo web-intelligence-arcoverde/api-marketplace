@@ -1,5 +1,5 @@
 const config = require("../config/auth.config");
-const db = require("../modules/app");
+const db = require("../model/app");
 const User = db.user;
 const Role = db.role;
 var jwt = require("jsonwebtoken");
@@ -12,7 +12,10 @@ exports.signup = (req, res) => {
     password: bcrypt.genSaltSync(req.body.password, 8),
    
   });
-  console.log(user)
+
+  console.log(User.model())
+
+ /*
   user.save((err, user) => {
     if (err) {
       res.status(500).send({ message: err });
@@ -54,7 +57,7 @@ exports.signup = (req, res) => {
         });
       });
     }
-  });
+  });*/
 };
 exports.signin = (req, res) => {
   User.findOne({

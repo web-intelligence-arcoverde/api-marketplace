@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-const Petshop = require("../modules/petshop");
-const Product = require("../modules/product");
+const Petshop = require("../model/petshop");
+const Product = require("../model/product");
 router.get("/petshops", async (req, res, next) => {
   try {
     const petshops = await Petshop.find();
