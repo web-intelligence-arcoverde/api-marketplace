@@ -7,56 +7,59 @@ var bcrypt = require("bcryptjs");
 
 exports.signup = (req, res) => {
   console.log(req.body)
-  const user = new User({
+  const user1 = new User({
     username: req.body.username,
     email: req.body.email,
-    password: bcrypt.genSaltSync(req.body.password, 10),
-   
+    password: bcrypt.hashSync(req.body.password, 10),
+
   });
-console.log(User)
- /*
-  user.save((err, user) => {
-    if (err) {
-      res.status(500).send({ message: err });
-      return;
-    }
-    if (req.body.roles) {
-      Role.find(
-        {
-          name: { $in: req.body.roles },
-        },
-        (err, roles) => {
-          if (err) {
-            res.status(500).send({ message: err });
-            return;
-          }
-          user.roles = roles.map((role) => role._id);
-          user.save((err) => {
-            if (err) {
-              res.status(500).send({ message: err });
-              return;
-            }
-            res.send({ message: "Usuario cadastrado com sucesso!" });
-          });
-        }
-      );
-    } else {
-      Role.findOne({ name: "user" }, (err, role) => {
-        if (err) {
-          res.status(500).send({ message: err });
-          return;
-        }
-        user.roles = [role._id];
-        user.save((err) => {
-          if (err) {
-            res.status(500).send({ message: err });
-            return;
-          }
-          res.send({ message: "Usuario cadastrado com sucesso!" });
-        });
-      });
-    }
-  });*/
+  console.log(user1.save( async (err, result)=>{
+     console.log( await result)
+    console.log( await err)
+  }))
+  /*
+   user.save((err, user) => {
+     if (err) {
+       res.status(500).send({ message: err });
+       return;
+     }
+     if (req.body.roles) {
+       Role.find(
+         {
+           name: { $in: req.body.roles },
+         },
+         (err, roles) => {
+           if (err) {
+             res.status(500).send({ message: err });
+             return;
+           }
+           user.roles = roles.map((role) => role._id);
+           user.save((err) => {
+             if (err) {
+               res.status(500).send({ message: err });
+               return;
+             }
+             res.send({ message: "Usuario cadastrado com sucesso!" });
+           });
+         }
+       );
+     } else {
+       Role.findOne({ name: "user" }, (err, role) => {
+         if (err) {
+           res.status(500).send({ message: err });
+           return;
+         }
+         user.roles = [role._id];
+         user.save((err) => {
+           if (err) {
+             res.status(500).send({ message: err });
+             return;
+           }
+           res.send({ message: "Usuario cadastrado com sucesso!" });
+         });
+       });
+     }
+   });*/
 };
 exports.signin = (req, res) => {
   User.findOne({

@@ -16,7 +16,7 @@ const User = new Schema({
     type: String,
   },
   roles: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "Role",
   },
 });
