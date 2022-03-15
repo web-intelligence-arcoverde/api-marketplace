@@ -4,68 +4,101 @@ const User = db.user;
 const Role = db.role;
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
-
+//
 exports.signup = (req, res) => {
-  console.log(req.body)
-  const user1 = new User({
+  const user = new User({
     username: req.body.username,
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, 10),
-
   });
-  console.log(user1.save( async (err, result)=>{
-     console.log( await result)
-    console.log( await err)
-  }))
-  /*
-   user.save((err, user) => {
-     if (err) {
-       res.status(500).send({ message: err });
-       return;
-     }
-     if (req.body.roles) {
-       Role.find(
-         {
-           name: { $in: req.body.roles },
-         },
-         (err, roles) => {
-           if (err) {
-             res.status(500).send({ message: err });
-             return;
-           }
-           user.roles = roles.map((role) => role._id);
-           user.save((err) => {
-             if (err) {
-               res.status(500).send({ message: err });
-               return;
-             }
-             res.send({ message: "Usuario cadastrado com sucesso!" });
-           });
-         }
-       );
-     } else {
-       Role.findOne({ name: "user" }, (err, role) => {
-         if (err) {
-           res.status(500).send({ message: err });
-           return;
-         }
-         user.roles = [role._id];
-         user.save((err) => {
-           if (err) {
-             res.status(500).send({ message: err });
-             return;
-           }
-           res.send({ message: "Usuario cadastrado com sucesso!" });
-         });
-       });
-     }
-   });*/
+  console.log(user)
+  user.save(async (err, result) => {
+    if (err) {
+      res.status(500).send({ message: err });
+      return;
+    }
+    if (req.body.role) {
+      Role.find(
+        {
+          name: { $in: req.body.role },
+        },
+        (err, role) => {
+          if (err) {
+            res.status(500).send({ message: err });
+            return;
+          }
+          user.role = role.map((role) => role._id);
+          user.save(async (err) => {
+            if (err) {
+              await res.status(500).send({ message: err });
+              return;
+            }
+            res.send({ message: "Usuario cadastrado com sucesso!" });
+          });
+        }
+      );
+    } else {
+      Role.findOne({ name: "user" }, (err, role) => {
+        if (err) {
+          res.status(500).send({ message: err });
+          return;
+        }
+        user.save(async (err) => {
+          if (err) {
+            await res.status(500).send({ message: err });
+            return;
+          }
+          res.send({ message: "Usuario  e Cargo cadastrado com sucesso!" });
+        });
+      });
+    }
+  })
+  user.save(async (err) => {
+    if (err) {
+      return;
+    }
+    if (req.body.role) {
+      Role.find(
+        {
+          name: { $in: req.body.role },
+        },
+        (err, role) => {
+          if (err) {
+            res.status(500).send({ message: err });
+            return;
+          }
+          user.role = role.map((role) => role._id);
+          user.save((err) => {
+            if (err) {
+              res.status(500).send({ message: err });
+              return;
+            }
+          });
+        }
+      );
+    } else {
+      Role.findOne({ name: "user" }, (err, role) => {
+        if (err) {
+          res.status(500).send({ message: err });
+          return
+        }
+        user.role = [role._id];
+        user.save((err) => {
+          if (err) {
+            res.status(500).send({ message: err });
+            return;
+          }
+          res.send({ message: "Usuario e Cargo cadastrado com sucesso!" });
+        });
+      });
+    }
+  });
 };
 exports.signin = (req, res) => {
   User.findOne({
     username: req.body.username,
   })
-    .populate("roles", "-__v")
+    .populate("role", "-__")
     .exec((err, user) => {
       if (err) {
         res.status(500).send({ message: err });
@@ -88,14 +121,14 @@ exports.signin = (req, res) => {
         expiresIn: 86400, // 24 hours
       });
       var authorities = [];
-      for (let i = 0; i < user.roles.length; i++) {
-        authorities.push("ROLE_" + user.roles[i].name.toUpperCase());
+      for (let i = 0; i < user.role.length; i++) {
+        authorities.push("ROLE_" + user.role[i].name.toUpperCase());
       }
       res.status(200).send({
         id: user._id,
         username: user.username,
         email: user.email,
-        roles: authorities,
+        role: authorities,
         accessToken: token,
       });
     });
