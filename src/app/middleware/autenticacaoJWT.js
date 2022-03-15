@@ -1,16 +1,16 @@
-const jwt = require("jsonwebtoken");
-const config = require("../config/auth.config.js");
-const db = require("../model/app");
+const jwt = require('jsonwebtoken');
+const config = require('../config/auth.config.js');
+const db = require('../model/app');
 const User = db.user;
 const Role = db.role;
 verifyToken = (req, res, next) => {
-  let token = req.headers["x-access-token"];
+  let token = req.headers['x-access-token'];
   if (!token) {
-    return res.status(403).send({ message: "Nenhum token fornecido!" });
+    return res.status(403).send({message: 'Nenhum token fornecido!'});
   }
   jwt.verify(token, config.secret, (err, decoded) => {
     if (err) {
-      return res.status(401).send({ message: "Não autorizado!" });
+      return res.status(401).send({message: 'Não autorizado!'});
     }
     req.userId = decoded.id;
     next();
@@ -19,54 +19,54 @@ verifyToken = (req, res, next) => {
 isAdmin = (req, res, next) => {
   User.findById(req.userId).exec((err, user) => {
     if (err) {
-      res.status(500).send({ message: err });
+      res.status(500).send({message: err});
       return;
     }
     Role.find(
       {
-        _id: { $in: user.roles },
+        _id: {$in: user.roles},
       },
       (err, roles) => {
         if (err) {
-          res.status(500).send({ message: err });
+          res.status(500).send({message: err});
           return;
         }
         for (let i = 0; i < roles.length; i++) {
-          if (roles[i].name === "admin") {
+          if (roles[i].name === 'admin') {
             next();
             return;
           }
         }
-        res.status(403).send({ message: "Requer permissao do administrador!" });
+        res.status(403).send({message: 'Requer permissao do administrador!'});
         return;
-      }
+      },
     );
   });
 };
 isModerator = (req, res, next) => {
   User.findById(req.userId).exec((err, user) => {
     if (err) {
-      res.status(500).send({ message: err });
+      res.status(500).send({message: err});
       return;
     }
     Role.find(
       {
-        _id: { $in: user.roles },
+        _id: {$in: user.roles},
       },
       (err, roles) => {
         if (err) {
-          res.status(500).send({ message: err });
+          res.status(500).send({message: err});
           return;
         }
         for (let i = 0; i < roles.length; i++) {
-          if (roles[i].name === "moderator") {
+          if (roles[i].name === 'moderator') {
             next();
             return;
           }
         }
-        res.status(403).send({ message: "Requer permissão do moderador!" });
+        res.status(403).send({message: 'Requer permissão do moderador!'});
         return;
-      }
+      },
     );
   });
 };
