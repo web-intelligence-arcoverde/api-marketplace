@@ -1,91 +1,67 @@
-exports.create = async (req, res) => {
-  const {email, password, role, address} = req.body;
+const asyncHandler = require('express-async-handler');
+const Address = require('ipaddr.js');
+const AD = require('../model/address');
 
-  const user = new User({
-    username: req.body.username,
-    email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 10),
-  });
-  console.log(user);
-  user.save(async (err, result) => {
-    if (err) {
-      res.status(500).send({message: err});
-      return;
+exports.createAddress = asyncHandler(async (req, res) => {
+  try {
+    const {name, number, cep, ref, district} = req.body;
+    const ad = new AD({
+      name,
+      number, 
+      cep, 
+      ref, 
+      district
+    });
+    const createAddress = await ad.save();
+    res.status(201).json(createAddress);
+  } catch (error) {
+    res.json({error: true, message: 'Vaitomanocu'});
+  }
+});
+exports.readAddress = asyncHandler(async (req, res) => {
+  try {
+    const ad = await AD.find();
+    res.status(201).json(ad);
+  } catch (error) {
+    res.json({error: true, message: error.message});
+  }
+});
+
+exports.deleteAddress = asyncHandler(async (req, res) => {
+  try {
+    const {name, number, cep, ref, district} = req.body;
+
+    const ad = await AD.findById(req.params.id);
+
+    if (ad) {
+      ad.name = name, number, cep, ref , district;
     }
-    if (req.body.role) {
-      Role.find(
-        {
-          name: {$in: req.body.role},
-        },
-        (err, role) => {
-          if (err) {
-            res.status(500).send({message: err});
-            return;
-          }
-          user.role = role.map((role) => role._id);
-          user.save(async (err) => {
-            if (err) {
-              await res.status(500).send({message: err});
-              return;
-            }
-            res.send({message: 'Usuario cadastrado com sucesso!'});
-          });
-        },
-      );
-    } else {
-      Role.findOne({name: 'user'}, (err, role) => {
-        if (err) {
-          res.status(500).send({message: err});
-          return;
-        }
-        user.save(async (err) => {
-          if (err) {
-            await res.status(500).send({message: err});
-            return;
-          }
-          res.send({message: 'Usuario  e Cargo cadastrado com sucesso!'});
-        });
-      });
-    }
-  });
-  user.save(async (err) => {
-    if (err) {
-      return;
-    }
-    if (req.body.role) {
-      Role.find(
-        {
-          name: {$in: req.body.role},
-        },
-        (err, role) => {
-          if (err) {
-            res.status(500).send({message: err});
-            return;
-          }
-          user.role = role.map((role) => role._id);
-          user.save((err) => {
-            if (err) {
-              res.status(500).send({message: err});
-              return;
-            }
-          });
-        },
-      );
-    } else {
-      Role.findOne({name: 'user'}, (err, role) => {
-        if (err) {
-          res.status(500).send({message: err});
-          return;
-        }
-        user.role = [role._id];
-        user.save((err) => {
-          if (err) {
-            res.status(500).send({message: err});
-            return;
-          }
-          res.send({message: 'Usuario e Cargo cadastrado com sucesso!'});
-        });
-      });
-    }
-  });
-};
+
+    const updatedAdress = await ad.save();
+
+    res.json(updatedAdress);
+  } catch (error) {
+    res.json({error: true, message: 'vai toma no cu'});
+  }
+});
+
+exports.deleteAdress = asyncHandler(async (req, res) => {
+  try {
+    const address = await Address.findById(req.params.id);
+
+    await address.delete();
+
+    res.json({error: false, message: 'deletado'});
+  } catch (error) {
+    res.json({error: true, exemple});
+  }
+});
+
+exports.findById = asyncHandler(async (req, res) => {
+  try {
+    const ad = await AD.findById(req.params.id);
+    res.json(ad);
+  } catch (error) {
+    res.json({error: true, exemple});
+  }
+}); 

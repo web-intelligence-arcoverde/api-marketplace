@@ -4,7 +4,6 @@ const Role = require('../model/role');
 exports.createRole = asyncHandler(async (req, res) => {
   try {
     const {name} = req.body;
-
     const role = new Role({
       name,
     });
