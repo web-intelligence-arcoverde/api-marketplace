@@ -1,7 +1,4 @@
-
-const mongoose = require("mongoose");
-const { user } = require("./app");
-
+const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 const User = new Schema({
@@ -11,13 +8,17 @@ const User = new Schema({
   email: {
     type: String,
   },
-  
+
+  phone: {
+    type: String,
+  },
+
   password: {
     type: String,
   },
-  roles: {
+  role_id: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Role",
+    ref: 'Role',
   },
 });
-module.exports = mongoose.model("User", User);
+module.exports = mongoose.model('User', User);

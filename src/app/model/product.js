@@ -1,25 +1,27 @@
-const mongoose = require("mongoose");
-
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const product = new Schema({
+
+const Product = new Schema({
   nome: {
     type: String,
   },
-  petshop_id: {
-    type: Schema.Types.ObjectId,
-    ref: "Petshop",
-  },
+
   preco: {
     type: Number,
   },
-  capa: {
+
+  logo: {
     type: String,
   },
-  preco: {
-    type: Number,
+
+  category_id: {
+    type: Schema.Types.ObjectId,
+    ref: 'Category',
   },
-  avaliacoes: {
-    type: Number,
+
+  market_id: {
+    type: Schema.Types.ObjectId,
+    ref: 'Market',
   },
 });
-module.exports = mongoose.model("Product", product);
+module.exports = mongoose.model('Product', Product);
