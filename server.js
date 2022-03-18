@@ -3,6 +3,10 @@ const express = require('express');
 const roleRoutes = require('./src/routes/role.routes');
 const userRoutes = require('./src/routes/user.routes');
 const addressRoutes = require('./src/routes/address.routes');
+const marketRoutes = require('./src/routes/market.routes');
+
+const categoryRoutes = require('./src/routes/category.routes');
+const productRoutes = require('./src/routes/product.routes');
 
 const app = express();
 
@@ -28,6 +32,9 @@ app.use(morgan('dev'));
 app.use('/v1/api', roleRoutes);
 app.use('/v1/api', userRoutes);
 app.use('/v1/api', addressRoutes);
+app.use('/v1/api', marketRoutes);
+app.use('/v1/api', categoryRoutes);
+app.use('/v1/api', productRoutes);
 
 app.listen(PORT, () => {
   console.log(`SERVIDOR RODANDO NA PORTA ${PORT}`);

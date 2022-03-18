@@ -3,18 +3,17 @@ const Product = require('../model/Product');
 
 exports.createProduct = asyncHandler(async (req, res) => {
   try {
-    const {name, logo, category_id, preco} = req.body;
+    const {name, logo, category_id, price, market_id} = req.body;
 
-    const Product = new Product({
+    const product = await Product.create({
       name,
       logo,
+      price,
       category_id,
-      preco,
+      market_id,
     });
 
-    const createdProduct = await Product.save();
-
-    res.status(201).json(createdProduct);
+    res.status(201).json(product);
   } catch (error) {
     res.json({error: true, message: error.message});
   }
@@ -64,9 +63,9 @@ exports.deleteProduct = asyncHandler(async (req, res) => {
 
 exports.findProductById = asyncHandler(async (req, res) => {
   try {
-    const Product = await Product.findById(req.params.id);
-    res.json(Product);
+    const product = await Product.findById(req.params.id);
+    res.json(product);
   } catch (error) {
-    res.json({error: true, exemple});
+    res.json({error: true, message: error.message});
   }
 });
