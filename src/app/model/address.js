@@ -6,6 +6,10 @@ const Address = new Schema({
     type: String,
   },
 
+  uf: {
+    type: String,
+  },
+
   city: {
     type: String,
   },

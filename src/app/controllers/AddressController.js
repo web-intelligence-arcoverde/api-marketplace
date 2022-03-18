@@ -1,26 +1,40 @@
 const asyncHandler = require('express-async-handler');
 const Address = require('../model/address');
 
-exports.createAddress = asyncHandler(async (req, res) => {
+exports.createAddress = async (req, res) => {
   try {
-    const {name} = req.body;
+    const {
+      postal_code,
+      uf,
+      city,
+      district,
+      street,
+      ref_point,
+      number,
+      user_id,
+    } = req.body;
 
-    const Address = new Address({
-      name,
+    const address = await Address.create({
+      postal_code,
+      uf,
+      city,
+      district,
+      street,
+      ref_point,
+      number,
+      user_id,
     });
 
-    const createdAddress = await Address.save();
-
-    res.status(201).json(createdAddress);
+    res.json(address);
   } catch (error) {
-    res.json({error: true, message: 'efoekf'});
+    res.json({error: true, message: error.message});
   }
-});
+};
 
-exports.readAddresss = asyncHandler(async (req, res) => {
+exports.readAddress = asyncHandler(async (req, res) => {
   try {
-    const Addresss = await Address.find();
-    res.status(201).json(Addresss);
+    const address = await Address.find();
+    res.status(201).json(address);
   } catch (error) {
     res.json({error: true, message: error.message});
   }
@@ -28,39 +42,46 @@ exports.readAddresss = asyncHandler(async (req, res) => {
 
 exports.updateAddress = asyncHandler(async (req, res) => {
   try {
-    const {name} = req.body;
+    const {postal_code, uf, city, district, street, ref_point, number} =
+      req.body;
 
-    const Address = await Address.findById(req.params.id);
+    const address = await Address.findById(req.params.id);
 
-    if (Address) {
-      Address.name = name;
+    if (address) {
+      address.postal_code = postal_code;
+      address.uf = uf;
+      address.city = city;
+      address.district = district;
+      address.street = street;
+      address.ref_point = ref_point;
+      address.number = number;
     }
 
-    const updatedAddress = await Address.save();
+    const updateAddress = await address.save();
 
-    res.json(updatedAddress);
+    res.json(updateAddress);
   } catch (error) {
-    res.json({error: true, message: 'efoekf'});
+    res.json({error: true, message: error.message});
   }
 });
 
 exports.deleteAddress = asyncHandler(async (req, res) => {
   try {
-    const Address = await Address.findById(req.params.id);
+    const address = await Address.findById(req.params.id);
 
-    await Address.delete();
+    await address.delete();
 
     res.json({error: false, message: 'deletado'});
   } catch (error) {
-    res.json({error: true, exemple});
+    res.json({error: true, message: error.message});
   }
 });
 
 exports.findAddressById = asyncHandler(async (req, res) => {
   try {
-    const Address = await Address.findById(req.params.id);
-    res.json(Address);
+    const address = await Address.findById(req.params.id);
+    res.json(address);
   } catch (error) {
-    res.json({error: true, exemple});
+    res.json({error: true, message: error.message});
   }
 });

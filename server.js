@@ -2,6 +2,7 @@ const express = require('express');
 
 const roleRoutes = require('./src/routes/role.routes');
 const userRoutes = require('./src/routes/user.routes');
+const addressRoutes = require('./src/routes/address.routes');
 
 const app = express();
 
@@ -26,6 +27,7 @@ require('./database');
 app.use(morgan('dev'));
 app.use('/v1/api', roleRoutes);
 app.use('/v1/api', userRoutes);
+app.use('/v1/api', addressRoutes);
 
 app.listen(PORT, () => {
   console.log(`SERVIDOR RODANDO NA PORTA ${PORT}`);
