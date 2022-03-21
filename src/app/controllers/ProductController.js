@@ -21,8 +21,8 @@ exports.createProduct = asyncHandler(async (req, res) => {
 
 exports.readProducts = asyncHandler(async (req, res) => {
   try {
-    const Products = await Product.find();
-    res.status(201).json(Products);
+    const product = await Product.find();
+    res.status(201).json(product);
   } catch (error) {
     res.json({error: true, message: error.message});
   }
@@ -32,16 +32,16 @@ exports.updateProduct = asyncHandler(async (req, res) => {
   try {
     const {name, logo, category_id, preco} = req.body;
 
-    const Product = await Product.findById(req.params.id);
+    const product = await Product.findById(req.params.id);
 
-    if (Product) {
+    if (product) {
       Product.name = name;
       (Product.logo = logo),
         (Product.category_id = category_id),
         (Product.preco = preco);
     }
 
-    const updatedProduct = await Product.save();
+    const updatedProduct = await product.save();
 
     res.json(updatedProduct);
   } catch (error) {
@@ -51,13 +51,13 @@ exports.updateProduct = asyncHandler(async (req, res) => {
 
 exports.deleteProduct = asyncHandler(async (req, res) => {
   try {
-    const Product = await Product.findById(req.params.id);
+    const product = await Product.findById(req.params.id);
 
-    await Product.delete();
+    await product.delete();
 
     res.json({error: false, message: 'deletado'});
   } catch (error) {
-    res.json({error: true, exemple});
+    res.json({error: true, message: error.message});
   }
 });
 
