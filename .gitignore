@@ -3,4 +3,7 @@
 node_modules
 node_modules/
 src/.DS_Store
-yarn.lock
+/yarn.lock
+/package-lock.json
+package-lock.json
+src/package-lock.json

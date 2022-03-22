@@ -27,7 +27,7 @@ app.use(cors(corsOptions));
 
 app.use(express.urlencoded({extended: true}));
 
-require('./database');
+require('./src/app/database/database');
 
 app.use(morgan('dev'));
 app.use('/v1/api', roleRoutes);
