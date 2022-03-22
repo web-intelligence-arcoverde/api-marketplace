@@ -7,6 +7,7 @@ const marketRoutes = require('./src/routes/market.routes');
 
 const categoryRoutes = require('./src/routes/category.routes');
 const productRoutes = require('./src/routes/product.routes');
+const orderRoutes = require('./src/routes/order.routes');
 
 const app = express();
 
@@ -35,6 +36,7 @@ app.use('/v1/api', addressRoutes);
 app.use('/v1/api', marketRoutes);
 app.use('/v1/api', categoryRoutes);
 app.use('/v1/api', productRoutes);
+app.use('/v1/api/', orderRoutes);
 
 app.listen(PORT, () => {
   console.log(`SERVIDOR RODANDO NA PORTA ${PORT}`);

@@ -1,7 +1,18 @@
-const Cart = require('./cart');
-
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+
+const Cart = new mongoose.Schema({
+  market_id: {type: mongoose.Schema.ObjectId, ref: 'Market'},
+  product_id: {type: mongoose.Schema.ObjectId, ref: 'Product'},
+
+  quantity: Number,
+
+  status: {
+    type: String,
+    default: 'Not processed',
+    enum: ['Not processed', 'Processing', 'Shipped', 'Delivered', 'Cancelled'],
+  },
+});
 
 const Order = new Schema({
   products: [Cart],
