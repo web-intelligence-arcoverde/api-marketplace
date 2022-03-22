@@ -30,11 +30,11 @@ const asyncHandler = require('express-async-handler');
 const User = require('../model/user');
 const Role = require('../model/role');
 const Address = require('../model/address');
-const  genSaltSync  = require('bcryptjs');
+const  bcrypt  = require('bcrypt');
 
 
 var parse_email = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
-//var parse_phone = /^1\d\d(\d\d)?$|^0800 ?\d{3} ?\d{4}$|^(\(0?([1-9a-zA-Z][0-9a-zA-Z])?[1-9]\d\) ?|0?([1-9a-zA-Z][0-9a-zA-Z])?[1-9]\d[ .-]?)?(9|9[ .-])?[2-9]\d{3}[ .-]?\d{4}$/gm
+// var parse_phone = \(?\d{2}\)?\s)?(\d{4,5}\-\d{4}s
 var parse_code = /^\d{5}-?\d{3}$/
 
 exports.createUser = async (req, res) => {
@@ -90,14 +90,20 @@ exports.createUser = async (req, res) => {
         message: "Senha muito grande, tente uma menor",
       });
     }
+
     
-    const user = await User.create({ username, email, phone, password, role_id })
+    const user = await User.create({ username, 
+      email, 
+      phone, 
+      password : bcrypt.genSaltSync(10), 
+      role_id 
+    })
     if (User.create) {
       return res
         .status(200)
-        .send({ message: "cadastrado com sucesso!" });
+        .send({ message: "Usuario cadastrado com sucesso!" });
     } 
-        
+  
 
     const { postal_code, city, district, street, ref_point, number } = address;
 
@@ -116,7 +122,12 @@ exports.createUser = async (req, res) => {
       ref_point,
       number,
       user_id: user._id,
-    });
+    })
+    if (Address.create) {
+      return res
+        .status(200)
+        .send({ message: "Endereço cadastrado com sucesso!" });
+    } 
 
     res.json({ user, createAddres });
   } catch (error) {
