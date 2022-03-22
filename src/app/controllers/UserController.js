@@ -81,13 +81,13 @@ exports.createUser = async (req, res) => {
 
     if (password.length < 6) {
       return res.status(403).send({
-        message: "Senha muito pequena",
+        message: "Senha muito pequena, tente uma maior",
       });
     }
 
     if (password.length > 22) {
       return res.status(403).send({
-        message: "Senha muito grande",
+        message: "Senha muito grande, tente uma menor",
       });
     }
     
