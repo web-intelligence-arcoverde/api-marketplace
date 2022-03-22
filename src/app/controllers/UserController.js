@@ -30,78 +30,80 @@ const asyncHandler = require('express-async-handler');
 const User = require('../model/user');
 const Role = require('../model/role');
 const Address = require('../model/address');
-const { response } = require('express');
-const { genSaltSync } = require('bcryptjs');
+const  genSaltSync  = require('bcryptjs');
 
 
 var parse_email = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
-var parse_phone = /^1\d\d(\d\d)?$|^0800 ?\d{3} ?\d{4}$|^(\(0?([1-9a-zA-Z][0-9a-zA-Z])?[1-9]\d\) ?|0?([1-9a-zA-Z][0-9a-zA-Z])?[1-9]\d[ .-]?)?(9|9[ .-])?[2-9]\d{3}[ .-]?\d{4}$/gm
+//var parse_phone = /^1\d\d(\d\d)?$|^0800 ?\d{3} ?\d{4}$|^(\(0?([1-9a-zA-Z][0-9a-zA-Z])?[1-9]\d\) ?|0?([1-9a-zA-Z][0-9a-zA-Z])?[1-9]\d[ .-]?)?(9|9[ .-])?[2-9]\d{3}[ .-]?\d{4}$/gm
 var parse_code = /^\d{5}-?\d{3}$/
 
 exports.createUser = async (req, res) => {
   try {
-    
-    const { username, email, phone, password, role_id, address } = req.body;
-    
-
+    const { username, email, phone, password, role_id, address, } = req.body;
     if (!username || !email || !phone || !password || !role_id || !address) {
-      return response.status(403).send({
+      return res.status(403).send({
         message: "Alguns atributos nao foram passados",
       });
     }
 
-    if (!parse_email.test(email)) {
-      return response.status(403).send({
-        message: "email invalido",
-      });
-    }
-
-    if (!parse_phone.test(phone)) {
-
-      return response.status(403).send({
-        message: "telefone invalido"
-      });
-    }
-
     if (!role_id) {
-      return response.status(403).send({
+      return res.status(403).send({
         message: "Cargo nao existe",
       });
     }
 
     if (!address) {
-      return response.status(403).send({
+      return res.status(403).send({
         message: "Endereço não inserido, coloque o endereço"
       })
     }
 
+    if (!parse_email.test(email)) {
+      return res.status(403).send({
+        message: "email invalido",
+      });
+    }
+
+     /*if (!parse_phone.test(phone)) {
+
+      return res.status(403).send({
+        message: "telefone invalido"
+      });
+    } */
+    
+    const isExistEmail = await User.findOne({email});
+
+    if (isExistEmail) {
+      return res
+        .status(403)
+        .send({ message: "Esse email ja esta sendo usado" });
+    }  
+
     if (password.length < 6) {
-      return response.status(403).send({
+      return res.status(403).send({
         message: "Senha muito pequena",
       });
     }
 
     if (password.length > 22) {
-      return response.status(403).send({
+      return res.status(403).send({
         message: "Senha muito grande",
       });
     }
-    const isExistEmail = await User.findOne("email", email);
-
-    if (isExistEmail) {
-      return response.status(403).send({
-        message: "email já existente, coloque outro"
-      });
-    }
-
-    const user = await User.create({ username, email, phone, password: genSaltSync(10), role_id });
-    console.log(user)
+    
+    const user = await User.create({ username, email, phone, password, role_id })
+    if (User.create) {
+      return res
+        .status(200)
+        .send({ message: "cadastrado com sucesso!" });
+    } 
+        
 
     const { postal_code, city, district, street, ref_point, number } = address;
 
-    if (!parse_code.test(phone)) {
+    if (!parse_code.test(postal_code)) {
 
-      return response.status(403).send({
+      return res.status(403).send({
         message: "CEP INVALIDO"
       });
     }
@@ -116,10 +118,11 @@ exports.createUser = async (req, res) => {
       user_id: user._id,
     });
 
-
     res.json({ user, createAddres });
   } catch (error) {
     res.json({ error: true, message: error.message });
+     console.log(error)
+     console.log(error.strack)
   }
 };
 
