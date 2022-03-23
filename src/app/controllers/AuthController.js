@@ -1,7 +1,5 @@
 const config = require('../config/auth.config');
-const db = require('../model/app');
-const User = db.user;
-const secret = require('../secrect.json')
+const User = require('../model/user');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 //
