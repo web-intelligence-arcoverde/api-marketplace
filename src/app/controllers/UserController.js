@@ -1,40 +1,11 @@
 
-/*
-
-email não pode ser igual
-validar se é um email mesmo
-
-validar numero 
-
-verificar se o id_role está vindo( só pode cadastrar com ele )
-
-
-- obrigatorio endereco, role_id
-
-
-no update só vai atualizar as informações do usuario basicas
-{
-  "username": "Lucas",
-  "email": "lukas.paes@gmail.com",
-  "phone": "87999999",
-  "role_id": "62310e81ae05b848a1d60e37",
-}
-
-- criar outra rota para alterar o password
-  
-criar uma outra rota para alterar o endereco
-
-
-*/
 const asyncHandler = require('express-async-handler');
 const User = require('../model/user');
-const Role = require('../model/role');
 const Address = require('../model/address');
 const bcrypt = require('bcrypt');
 
 
 var parse_email = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
-// var parse_phone = \(?\d{2}\)?\s)?(\d{4,5}\-\d{4}s
 var parse_code = /^\d{5}-?\d{3}$/
 
 exports.createUser = async (req, res) => {
@@ -63,13 +34,6 @@ exports.createUser = async (req, res) => {
         message: "email invalido",
       });
     }
-
-    /*if (!parse_phone.test(phone)) {
-
-     return res.status(403).send({
-       message: "telefone invalido"
-     });
-   } */
 
     const isExistEmail = await User.findOne({ email });
 
@@ -111,7 +75,7 @@ exports.createUser = async (req, res) => {
     if (!parse_code.test(postal_code)) {
 
       return res.status(403).send({
-        message: "CEP INVALIDO"
+        message: "Cep inválido"
       });
     }
 
