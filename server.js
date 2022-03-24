@@ -39,5 +39,5 @@ app.use('/v1/api', productRoutes);
 app.use('/v1/api/', orderRoutes);
 
 app.listen(PORT, () => {
-  console.log(`SERVIDOR RODANDO NA PORTA ${PORT}`);
+  console.log(`Servidor rodando na porta ${PORT}`);
 });
