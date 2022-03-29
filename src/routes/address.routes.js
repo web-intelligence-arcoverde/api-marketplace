@@ -1,9 +1,9 @@
 const {
-  createAddress,
-  readAddress,
-  deleteAddress,
-  updateAddress,
-  findAddressById,
+    createAddress,
+    readAddress,
+    deleteAddress,
+    updateAddress,
+    findAddressById,
 } = require('../app/controllers/AddressController');
 
 const express = require('express');

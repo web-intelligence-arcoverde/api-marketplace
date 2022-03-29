@@ -18,14 +18,14 @@ app.use(express.json());
 const morgan = require('morgan');
 
 var corsOptions = {
-  origin: 'http://localhost:8040',
+    origin: 'http://localhost:8040',
 };
 
 const PORT = process.env.PORT || 8040;
 
 app.use(cors(corsOptions));
 
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 require('./src/app/database/database');
 
@@ -39,5 +39,5 @@ app.use('/v1/api', productRoutes);
 app.use('/v1/api/', orderRoutes);
 
 app.listen(PORT, () => {
-  console.log(`SERVIDOR RODANDO NA PORTA ${PORT}`);
+    console.log(`SERVIDOR RODANDO NA PORTA ${PORT}`);
 });

@@ -1,3 +1,3 @@
 module.exports = {
-  key: 'bezkodassaer-secret-key',
+    key: 'bezkodassaer-secret-key',
 };

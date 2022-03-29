@@ -1,9 +1,9 @@
 const {
-  createOrder,
-  readOrder,
-  updateOrder,
-  deleteOrder,
-  findOrderById,
+    createOrder,
+    readOrder,
+    updateOrder,
+    deleteOrder,
+    findOrderById,
 } = require('../app/controllers/OrderController');
 
 const express = require('express');

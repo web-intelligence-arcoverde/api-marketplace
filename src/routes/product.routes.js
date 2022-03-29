@@ -1,9 +1,9 @@
 const {
-  createProduct,
-  readProducts,
-  deleteProduct,
-  updateProduct,
-  findProductById,
+    createProduct,
+    readProducts,
+    deleteProduct,
+    updateProduct,
+    findProductById,
 } = require('../app/controllers/ProductController');
 
 const express = require('express');

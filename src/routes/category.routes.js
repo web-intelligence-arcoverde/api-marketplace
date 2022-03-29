@@ -1,9 +1,9 @@
 const {
-  createCategory,
-  readCategory,
-  deleteCategory,
-  updateCategory,
-  findCategoryById,
+    createCategory,
+    readCategory,
+    deleteCategory,
+    updateCategory,
+    findCategoryById,
 } = require('../app/controllers/CategoryController');
 
 const express = require('express');

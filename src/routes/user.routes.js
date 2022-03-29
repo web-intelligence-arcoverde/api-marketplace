@@ -1,9 +1,9 @@
 const {
-  createUser,
-  readUser,
-  deleteUser,
-  updateUser,
-  findUserById,
+    createUser,
+    readUser,
+    deleteUser,
+    updateUser,
+    findUserById,
 } = require('../app/controllers/UserController');
 
 const express = require('express');

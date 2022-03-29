@@ -1,9 +1,9 @@
 const {
-  createMarket,
-  readMarket,
-  deleteMarket,
-  updateMarket,
-  findMarketById,
+    createMarket,
+    readMarket,
+    deleteMarket,
+    updateMarket,
+    findMarketById,
 } = require('../app/controllers/MarketController');
 
 const express = require('express');

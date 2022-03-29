@@ -1,8 +1,4 @@
-
-
-const {
-  authUser
-} = require('../app/controllers/AuthController');
+const { authUser } = require('../app/controllers/AuthController');
 
 const express = require('express');
 const router = express.Router();

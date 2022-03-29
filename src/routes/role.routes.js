@@ -1,9 +1,9 @@
 const {
-  createRole,
-  readRoles,
-  updateRole,
-  deleteRole,
-  findRoleById,
+    createRole,
+    readRoles,
+    updateRole,
+    deleteRole,
+    findRoleById,
 } = require('../app/controllers/RoleController');
 
 const express = require('express');
