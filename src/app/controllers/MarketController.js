@@ -4,6 +4,12 @@ const Market = require('../model/market');
 exports.createMarket = async (req, res) => {
   try {
     const {market_name, logo, location, user_id} = req.body;
+    
+    if (!market_name || !logo || !location || !user_id ) {
+      return res.status(403).send({
+        message: "Alguns atributos do market nao foram passados",
+      });
+    }
 
     const market = await Market.create({market_name, logo, location, user_id});
 

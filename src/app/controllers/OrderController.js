@@ -4,6 +4,11 @@ const Order = require('../model/order');
 exports.createOrder = asyncHandler(async (req, res) => {
   try {
     const {products, user_id} = req.body;
+    if (!products || !user_id ) {
+      return res.status(403).send({
+        message: "Alguns atributos do order nao foram passados",
+      });
+    }
 
     const order = new Order({products, user_id});
 

@@ -31,6 +31,11 @@ exports.readProducts = asyncHandler(async (req, res) => {
 exports.updateProduct = asyncHandler(async (req, res) => {
   try {
     const {name, logo, category_id, preco} = req.body;
+    if (!name || !logo || !category_id || preco) {
+      return res.status(403).send({
+        message: "Alguns atributos do produto nao foram passados",
+      });
+    }
 
     const product = await Product.findById(req.params.id);
 

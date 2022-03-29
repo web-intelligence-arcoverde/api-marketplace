@@ -14,6 +14,12 @@ exports.createAddress = async (req, res) => {
       user_id,
     } = req.body;
 
+    if (!postal_code || !uf || !city || !district || !street || !number || !user_id ) {
+      return res.status(403).send({
+        message: "Alguns atributos nao foram passados",
+      });
+    }
+
     const address = await Address.create({
       postal_code,
       uf,
@@ -61,7 +67,7 @@ exports.updateAddress = asyncHandler(async (req, res) => {
 
     res.json(updateAddress);
   } catch (error) {
-    res.json({error: true, message: error.message});
+   res.json({error: true, message: error.message});
   }
 });
 

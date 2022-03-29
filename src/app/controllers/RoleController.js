@@ -3,7 +3,14 @@ const Role = require('../model/role');
 
 exports.createRole = asyncHandler(async (req, res) => {
   try {
-    const {name} = req.body;
+    const {name} = req.body; 
+
+    if (!name) {
+      return res.status(403).send({
+        message: "Alguns atributos do Role não foi passado",
+      });
+    }
+    
 
     const role = new Role({
       name,

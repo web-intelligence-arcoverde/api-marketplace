@@ -3,7 +3,13 @@ const Category = require('../model/category');
 
 exports.createCategory = async (req, res) => {
   try {
-    const {name} = req.body;
+    const {name} = req.body; 
+
+    if (!name) {
+      return res.status(403).send({
+        message: "Alguns atributos do category nao foram passados",
+      });
+    }
 
     const category = await Category.create({name});
 
