@@ -36,21 +36,6 @@ exports.authUser = async (req, res) => {
         console.log(error);
     }
 };
-/*
-      var authorities = [];
-      for (let i = 0; i < user.role.length; i++) {
-        authorities.push('ROLE_' + user.role[i].name.toUpperCase());
-      }
-      res.status(200).send({
-        id: user._id,
-        username: user.username,
-        email: user.email,
-        role: authorities,
-        accessToken: token,
-      });
-    });
-}; 
-*/
 
 //– /api/test/all for public access
 //– /api/test/user for loggedin users (any role)
