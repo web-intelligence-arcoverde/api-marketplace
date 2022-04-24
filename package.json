@@ -87,6 +87,7 @@
         "tr46": "^3.0.0",
         "type-is": "^1.6.18",
         "unpipe": "^1.0.0",
+        "util": "^0.12.4",
         "utils-merge": "^1.0.1",
         "vary": "^1.1.2",
         "webidl-conversions": "^7.0.0",
